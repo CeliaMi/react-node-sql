@@ -3,14 +3,22 @@ import { handlerCreateBook } from "../middleware/bookHandlers"
 import Alert from "../components/Alert";
 import { useForm } from "react-hook-form";
 import Modal from "../components/Modal";
-import UploadFile from "../components/UploadFile"
+// import UploadFile from "../components/UploadFile"
+import { createFile } from "../services/FileService";
 
 const CreateBook = () => {
 
 
   const { register, handleSubmit, formState: { errors, isSubmitSuccessful } } = useForm()
 
-    const handleForm = ( newBook ) =>{
+    const handleForm = async( data ) =>{
+      const { title, writer, File, book_description } = data
+      console.log(File)
+      const formData = new FormData()
+      formData.append("File", File[0])
+      const response = await createFile(formData)
+      const urlFile = response.data.data.url
+      const newBook = {title: title, writer: writer, file_url: urlFile, book_description: book_description}
       handlerCreateBook(newBook)
     }
 
@@ -21,10 +29,11 @@ const CreateBook = () => {
           
           <h3 className="text-purple-400 tracking-widest font-medium title-font">
           ¿Qué nuevo libro te comprometes a Leer?</h3>
-          <UploadFile/>
+          
           <form onSubmit={handleSubmit(handleForm)} className='flex flex-wrap -m-2' >
             <div className='p-2 w-full'>
               <div className='relative'>
+              <input type='file' name="File" id="File" { ...register("File")} className='ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg mt-5' ></input>
 
                 <label htmlFor="title" className='eading-7 text-sm text-gray-400'>Título:</label>
                 <input type="text" name="title" id="title" { ...register("title", { minLength: 2,  required: true,
