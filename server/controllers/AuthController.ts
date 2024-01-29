@@ -32,7 +32,7 @@ export const registerController =  async(req:Request, res:Response): Promise<Res
            user:userData
         }
 
-    res.send({sesiondata})
+    res.status(201).send({sesiondata})
         
     } catch(error){
         console.log(error)
@@ -71,7 +71,6 @@ export const registerController =  async(req:Request, res:Response): Promise<Res
         res.send({sesiondata})
 
     }catch(error){
-        console.log(error)
         handleHttpError(res, "ERROR_LOGIN_USER")
     }
 

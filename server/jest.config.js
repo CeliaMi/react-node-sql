@@ -6,6 +6,10 @@ module.exports = {
   coverageDirectory: 'coverage',
   preset: 'ts-jest',
   testEnvironment: 'node',
+  "coveragePathIgnorePatterns": [
+    "/node_modules/"
+  ],
+  "globalTeardown":"./global-kill.js",
   coverageReporters: [
     'json',
     'text',
@@ -17,5 +21,6 @@ module.exports = {
     'ts',
     'tsx',
   ],
+  "globalTeardown":"./global-kill.ts"
 };
 

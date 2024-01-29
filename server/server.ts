@@ -1,5 +1,5 @@
 import express from 'express';
-import {PORT} from "./utils/config";
+import {NODE_ENV, PORT} from "./utils/config";
 import db from "./database/db"
 import userRouter from './routes/UserRouter';
 import cors from 'cors'
@@ -24,7 +24,7 @@ try{
 	console.log(`error:' ${error}`)
 	}
 
-
-    export const server = app.listen(PORT,() =>{
+	if(NODE_ENV !== 'test'){
+    app.listen(PORT,() =>{
 	console.log(`🚀server up in http://localhost:${PORT}/`)
-} )
+} )}
