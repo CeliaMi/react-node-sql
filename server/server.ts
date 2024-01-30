@@ -27,4 +27,6 @@ try{
 	if(NODE_ENV !== 'test'){
     app.listen(PORT,() =>{
 	console.log(`🚀server up in http://localhost:${PORT}/`)
-} )}
+} )
+}
+
