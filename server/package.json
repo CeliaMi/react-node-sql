@@ -5,7 +5,8 @@
   "main": "server.ts",
   "scripts": {
     "build": "tsc ./server.ts",
-    "dev": "ts-node-dev --respawn ./server.ts"
+    "dev": "ts-node-dev --respawn ./server.ts",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -25,11 +26,14 @@
     "@types/cors": "^2.8.17",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/sequelize": "^4.28.19",
     "@types/validator": "^13.11.8",
     "dotenv": "^16.3.1",
+    "jest": "^29.7.0",
     "sequelize-typescript": "^2.1.6",
+    "supertest": "^6.3.4",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"
   }
