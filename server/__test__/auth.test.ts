@@ -29,7 +29,7 @@ describe("AUTH api/auth" , ()=>{
         expect(response.body).toHaveProperty("sesiondata")
     })
 
-    test("when user doesnt exist should be return 403", async()=> {
+    test("when user doesn't exist should be return 403", async()=> {
         const response = await request(app).post('/api/login')
         .send(UnregisteredUser)
         expect(response.statusCode).toEqual(404)
