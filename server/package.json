@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc ./server.ts",
     "dev": "ts-node-dev --respawn ./server.ts",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles --silent --verbose"
   },
   "keywords": [],
   "author": "",
