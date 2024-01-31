@@ -4,14 +4,14 @@ import UserModel from '../models/UserModel'
 import db from '../database/db'
 
 
-const testAuthLogin = {
-    "email": "test@test1.com",
+const UnregisteredUser = {
+    "email": "Login@test.com",
     "password": "123456789"
 }
 
 const testAuthRegister = {
     "name":"userTest",
-    "email": "test@test1.com",
+    "email": "Register@test.test",
     "password": "123456789"
 }
 
@@ -29,11 +29,23 @@ describe("AUTH api/auth" , ()=>{
         expect(response.body).toHaveProperty("sesiondata")
     })
 
+    test("when user doesnt exist should be return 403", async()=> {
+        const response = await request(app).post('/api/login')
+        .send(UnregisteredUser)
+        expect(response.statusCode).toEqual(404)
+        // expect(response.body).toHaveProperty("error")
+    })
+
+
     afterAll( async () => { 
-        const userEmail = testAuthLogin.email
+        const userEmail = testAuthRegister.email
         const USER_EMAIL = userEmail.toString()
-        await  UserModel.destroy({where:{ email: USER_EMAIL}  })
-        await db.close();    
-     }); 
+        await  UserModel.destroy({where:{ email: USER_EMAIL}  })  
+        await db.close();  
+     });
+
+    //  afterEach(async () => { 
+    //     await db.close();  
+    //  })
 
 })

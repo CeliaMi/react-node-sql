@@ -71,9 +71,12 @@ export const registerController =  async(req:Request, res:Response): Promise<Res
         res.send({sesiondata})
 
     }catch(error){
-        console.log(error)
-        handleHttpError(res, "ERROR_LOGIN_USER")
+        //verifica si ya se ha mandado alguna repuesta de error con el try ¿debería poner algun next despues de los errores de arriba?)
+        if (!res.headersSent) {
+            handleHttpError(res, "ERROR_LOGIN_USER")
+        } 
+        }
     }
 
-}
+
 
