@@ -33,7 +33,8 @@ describe("AUTH api/auth" , ()=>{
         const response = await request(app).post('/api/login')
         .send(UnregisteredUser)
         expect(response.statusCode).toEqual(404)
-        // expect(response.body).toHaveProperty("error")
+        expect(response.body).toHaveProperty("error")
+        expect(response.body.error).toContain("USER_NOT_EXISTS")
     })
 
 
