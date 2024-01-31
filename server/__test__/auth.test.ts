@@ -2,18 +2,7 @@ import request from 'supertest'
 import { app } from '../server'
 import UserModel from '../models/UserModel'
 import db from '../database/db'
-
-
-const UnregisteredUser = {
-    "email": "Login@test.com",
-    "password": "123456789"
-}
-
-const testAuthRegister = {
-    "name":"userTest",
-    "email": "Register@test.test",
-    "password": "123456789"
-}
+import { UnregisteredUser, testAuthRegister } from './helpers/helperTestData'
 
 describe("AUTH api/auth" , ()=>{
 
