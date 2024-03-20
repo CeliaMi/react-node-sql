@@ -79,6 +79,31 @@ describe("CRUD api/book" , ()=>{
       expect(response.statusCode).toEqual(200);
     })
 
+    describe( 'UPDATE /books', ()=> {
+
+      let dataNewBook = {}
+  
+      beforeEach(()=>{
+         dataNewBook = { 
+          ...testBookData, 
+          file_url: "www.newPic.com" ,
+        };
+      })
+  
+      test("When the user update a book it should return a update success message and the data", async () => {
+        const createdBook = await BookModel.findOne({ where: { id_user: USER_ID }})
+        const BOOK_ID = createdBook?.get('id')?.toString()
+        const response = await request(app)
+          .put(`/api/books/${BOOK_ID}`)
+          .set("Authorization", `Bearer ${JWT_TOKEN}`)
+          .send(dataNewBook);
+        expect(response.statusCode).toEqual(201);
+        expect(response.body.message).toContain("has been update successfully!")
+        // expect(body.body.file_url).toContain("www.newPic.com");  
+      });
+      
+    })
+
   })
 
   afterAll( async() => { 

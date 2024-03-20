@@ -46,9 +46,9 @@ export const UserModel = db.define('users', {
 }, {
     timestamps: false
 });
-(async () => {
-    await db.sync();
-    // console.log("All models were synchronized successfully.");
-})();
+// (async () => {
+//     await db.sync();
+//     // console.log("All models were synchronized successfully.");
+// })();
 
 export default UserModel

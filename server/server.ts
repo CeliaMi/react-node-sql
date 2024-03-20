@@ -7,6 +7,7 @@ import { bookRouter } from './routes/BookRouter';
 import { fileRouter } from './routes/FileRouter';
 
 
+
 export const app = express();
     
 app.use(cors())
@@ -17,8 +18,10 @@ app.use('/api/file',fileRouter)
 app.use(express.static('storage'))
 
 
+
 try{
 	db.authenticate()
+	db.sync();
 	console.log('💫💫💫conected to database💫💫💫')
 	}catch(error){
 	console.log(`error:' ${error}`)

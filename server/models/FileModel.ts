@@ -29,9 +29,9 @@ const FileModel = db.define('files', {
 }, {
     timestamps: false
 });
-(async () => {
-    await db.sync();
-    // console.log("All models were synchronized desde File.");
-})();
+// (async () => {
+//     await db.sync();
+//      console.log("All models were synchronized desde File.");
+// })();
 
 export default FileModel

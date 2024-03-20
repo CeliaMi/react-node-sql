@@ -8,6 +8,6 @@ const db = new Sequelize(DB_NAME , DB_USER, DB_PASSWORD, {
 		define: {
 			timestamps: false 
 		}
-}) 
+})
 
 export default db;
