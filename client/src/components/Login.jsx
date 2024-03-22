@@ -2,26 +2,20 @@ import {  Link } from "react-router-dom";
 import Alert from "../components/Alert";
 import { useForm } from "react-hook-form";
 // import Modal from "../components/Modal";
-import { handlerLoginUser } from "../middleware/userHandlers";
+// import { handlerLoginUser } from "../middleware/userHandlers";
 import { useUserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setUser,setIsAuthenticated } = useUserContext();
+  const { loginContext } = useUserContext();
   const { register, handleSubmit, formState: { errors, isSubmitSuccessful } } = useForm()
 
     const handleForm = async( loginUser ) =>{
       try {
-        const res = await handlerLoginUser(loginUser)
-        if (res.data.sesiondata.token) {
-          setIsAuthenticated(true)
-          localStorage.setItem('token', res.data.sesiondata.token)
-          localStorage.setItem('role', res.data.sesiondata.user.role)
-          setUser(res.data.sesiondata)
-          console.log('Logged in!')
-          navigate("/home");
-        }
+        loginContext(loginUser)
+        console.log('Logged in!')
+        navigate("/home");
 
       } catch (error) {
         console.log('Login failed.');

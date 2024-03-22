@@ -2,19 +2,19 @@ import axios from "axios";
 
     export const API_URL = "http://localhost:3000/api/books";
 
-    function getToken(){
-        var token = localStorage.getItem('token')
-        const headers = {
-            'Authorization': `Bearer ${token}`
-          };
+    // function getToken(){
+    //     var token = localStorage.getItem('token')
+    //     const headers = {
+    //         'Authorization': `Bearer ${token}`
+    //       };
 
-        return headers
-    }
+    //     return headers
+    // }
 
 
-    export const getAllBooks = async () => {
+    export const getAllBooks = async (token) => {
         try {
-        const headers = getToken()
+        const headers = {'Authorization': `Bearer ${token}`};
         console.log(headers)
         const res = await axios.get(API_URL, { headers });
         return res.data;

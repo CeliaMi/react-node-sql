@@ -7,7 +7,8 @@ import { loadOneBook } from "../middleware/bookLoaders";
 import LayoutPublic from "../layout/LayoutPublic";
 import NotFound from "../pages/NotFound";
 import Home from "../pages/Home";
-import { getAllBooks } from "../services/BookService";
+ import { getAllBooks } from "../services/BookService";
+import { gettAllBooksContext} from "../context/ConextApi";
 import Register from "../pages/Register";
 import LayoutPrivate from "../layout/LayoutPrivates";
 
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
                 {
                   index: true,
                   element: <Home/>,
-                  loader: getAllBooks ,
+                  loader: getAllBooks,
                 },
                 {
                   path: "home/books/:id",
